@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shelley-sprites"
+version = "0.1.0"
+description = "MCP server for generating consistent pixel art sprite animations for Shelley Guitars game characters"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "XZA (Magus)" }
+]
+
+dependencies = [
+    "mcp>=1.0.0",
+    "python-dotenv>=1.0",
+    "httpx>=0.24",
+    "Pillow>=10.0",
+    "gradio-client>=1.0",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+all = ["shelley-sprites[openai]"]
+
+[project.scripts]
+shelley-sprites = "shelley_sprites.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shelley_sprites"]
